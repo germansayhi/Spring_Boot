@@ -13,7 +13,7 @@ public class DepartmentController {
     private DepartmentService departmentService;
 
     @PostMapping("/api/v2/departments")
-   public Department create(@RequestBody Department department){
-       return departmentService.create(department);
-   }
+    public Department create(@RequestBody Department department) {
+        return departmentService.create(department);
+    }
 }
