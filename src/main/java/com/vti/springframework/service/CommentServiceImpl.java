@@ -4,13 +4,13 @@ import com.vti.springframework.dto.CommentDto;
 import com.vti.springframework.form.CommentCreateForm;
 import com.vti.springframework.form.CommentUpdateForm;
 import com.vti.springframework.mapper.CommentMapper;
-import com.vti.springframework.mapper.PostMapper;
 import com.vti.springframework.reponsitory.CommentReponsitory;
 import com.vti.springframework.reponsitory.PostRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -19,11 +19,10 @@ public class CommentServiceImpl implements CommentService {
     private PostRepository postRepository;
 
     @Override
-    public List<CommentDto> findAll() {
-        return commentReponsitory.findAll()
-                .stream()
-                .map(CommentMapper::map)
-                .toList();
+    public Page<CommentDto> findAll(Pageable pageable) {
+        return commentReponsitory.findAll(pageable)
+                .map(CommentMapper::map);
+
     }
 
     @Override

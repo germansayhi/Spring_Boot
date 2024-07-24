@@ -6,6 +6,8 @@ import com.vti.springframework.form.CommentUpdateForm;
 import com.vti.springframework.service.CommentService;
 import lombok.AllArgsConstructor;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +18,8 @@ public class CommentController {
     private CommentService commentService;
 
     @GetMapping("api/v1/comments")
-    public List<CommentDto> findAll() {
-        return commentService.findAll();
+    public Page<CommentDto> findAll(Pageable pageable) {
+        return commentService.findAll(pageable);
     }
 
     @PostMapping("/api/v1/posts/{postId}/comments")
