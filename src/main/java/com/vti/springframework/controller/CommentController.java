@@ -1,14 +1,11 @@
 package com.vti.springframework.controller;
 
 import com.vti.springframework.dto.CommentDto;
-import com.vti.springframework.dto.PostDto;
 import com.vti.springframework.form.CommentCreateForm;
 import com.vti.springframework.form.CommentUpdateForm;
-import com.vti.springframework.form.PostCreateForm;
-import com.vti.springframework.form.PostUpdateForm;
 import com.vti.springframework.service.CommentService;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
