@@ -10,7 +10,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.function.Function;
 
 
@@ -32,6 +34,28 @@ public class PostServiceImpl implements PostService {
         return postRepository.findAll(pageable)
                 .map(PostMapper::map);
 
+    }
+
+    @Override
+    public Page<PostDto> findByTitleContaining(String search, Pageable pageable) {
+        return postRepository.findByTitleContaining(search, pageable)
+                .map(PostMapper::map);
+    }
+
+    @Override
+    public List<PostDto> findByIdBetween(Long minId, Long maxId) {
+        return postRepository.findByIdBetween(minId, maxId)
+                .stream()
+                .map(PostMapper::map)
+                .toList();
+    }
+
+    @Override
+    public List<PostDto> findByTitle(String title) {
+        return postRepository.findByTitle(title)
+                .stream()
+                .map(PostMapper::map)
+                .toList();
     }
 
     @Override
@@ -58,8 +82,20 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Transactional
+    public void updateTilte(Long id, String title) {
+        postRepository.updateTitle(id, title);
+    }
+
+    @Override
     public void deleteId(Long id) {
         postRepository.deleteById(id);
 
+    }
+
+    @Override
+    @Transactional
+    public void deleteByTitle(String title) {
+         postRepository.deleteByTitle(title);
     }
 }
