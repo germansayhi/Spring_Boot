@@ -38,5 +38,6 @@ public class AccessoryController {
     @DeleteMapping("/api/v1/accessories/{id}")
     public void deleteById(@PathVariable("id")Long id){
        accessoryService.deleteById(id);
+
     }
 }
