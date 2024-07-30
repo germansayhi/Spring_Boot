@@ -1,4 +1,4 @@
-package com.vti.kshop.dto;
+package com.vti.kshop.form;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,12 +7,11 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class CarDetailsDto {
-    private Long id;
+public class AccessoryUpdateForm {
     private String licensePlate;
     private LocalDate repairDate;
     private String name;
     private Long price;
     private String statusDamaged;
-    private String repiarStatus;
+    private String repairStatus;
 }

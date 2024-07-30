@@ -3,7 +3,7 @@ package com.vti.kshop.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
+
 
 import java.time.LocalDate;
 import java.util.List;
@@ -18,7 +18,7 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "licensePlate", length = 50, nullable = false)
+    @Column(name = "license_plate", length = 50, nullable = false)
     private String licensePlate;
 
     @Column(name = "repair_date", nullable = false )
@@ -34,5 +34,5 @@ public class Car {
     private String carMaker;
 
     @OneToMany(mappedBy = "car")
-    private List<CarDetails> carDetails;
+    private List<Accessory> accessories;
 }

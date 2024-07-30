@@ -7,11 +7,11 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class CarDetailsUpdateForm {
-    private String licensePlate;
-    private LocalDate repairDate;
+public class AccessoryCreateForm {
     private String name;
     private Long price;
+    private String licensePlate;
+    private LocalDate repairDate;
     private String statusDamaged;
-    private String repiarStatus;
+    private String repairStatus;
 }

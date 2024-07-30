@@ -1,4 +1,4 @@
-package com.vti.kshop;
+package com.vti.kshop.controller;
 
 import com.vti.kshop.dto.CarDto;
 import com.vti.kshop.form.CarCreateForm;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @AllArgsConstructor
 @CrossOrigin("http://127.0.0.1:5500/")
-public class controller {
+public class CarController {
     private CarService carService;
 
     @GetMapping("/api/v1/cars")
@@ -36,7 +36,7 @@ public class controller {
     }
 
     @DeleteMapping("/api/v1/cars/{id}")
-    void deleteById(@PathVariable("id+") Long id){
+    void deleteById(@PathVariable("id") Long id){
         carService.deleteId(id);
     }
 }

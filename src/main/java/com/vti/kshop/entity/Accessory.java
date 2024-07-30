@@ -7,23 +7,16 @@ import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import java.time.LocalDate;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "accessory_details")
-public class CarDetails {
+public class Accessory {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "license_plate", length = 50, nullable = false)
-    private String licensePlate;
-
-    @Column(name = "repair_date", nullable = false)
-    private LocalDate repairDate;
 
     @Column(name = "name", nullable = false,length = 100)
     private String name;
@@ -35,14 +28,13 @@ public class CarDetails {
     private String statusDamaged;
 
     @Column(name = "repair_status",length = 100, nullable = false)
-    private String repiarStatus;
+    private String repairStatus;
 
     @ManyToOne
-    @JoinColumn(
-            name = "car_id",
-            referencedColumnName = "id",
-            nullable = false
-    )
+    @JoinColumns(value = {
+            @JoinColumn(name = "license_plate", referencedColumnName = "license_plate", nullable = false),
+            @JoinColumn(name = "repair_date", referencedColumnName = "repair_date", nullable = false)
+    })
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Car car;
 }
