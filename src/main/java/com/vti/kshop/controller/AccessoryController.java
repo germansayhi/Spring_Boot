@@ -7,6 +7,7 @@ import com.vti.kshop.service.AccessoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,6 +17,7 @@ public class AccessoryController {
     private AccessoryService accessoryService;
 
     @PostMapping("api/v1/accessories")
+    @ResponseStatus(HttpStatus.CREATED)
     public AccessoryDto create(@RequestBody AccessoryCreateForm form){
         return accessoryService.create(form);
     }
@@ -36,6 +38,7 @@ public class AccessoryController {
     }
 
     @DeleteMapping("/api/v1/accessories/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable("id")Long id){
        accessoryService.deleteById(id);
 

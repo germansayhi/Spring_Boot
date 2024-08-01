@@ -7,11 +7,12 @@ import com.vti.kshop.service.CarService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-@CrossOrigin("http://127.0.0.1:5500/")
+@CrossOrigin("*")
 public class CarController {
     private CarService carService;
 
@@ -20,12 +21,13 @@ public class CarController {
         return carService.findAll(pageable);
     }
 
-    @GetMapping("api/v1/cars/{id}")
+    @GetMapping("/api/v1/cars/{id}")
     public CarDto findById(@PathVariable("id") Long id){
         return carService.findById(id);
     }
 
     @PostMapping("/api/v1/cars")
+    @ResponseStatus(HttpStatus.CREATED)
     public  CarDto create(@RequestBody CarCreateForm form){
         return carService.create(form);
     }
@@ -36,7 +38,8 @@ public class CarController {
     }
 
     @DeleteMapping("/api/v1/cars/{id}")
-    void deleteById(@PathVariable("id") Long id){
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable("id") Long id){
         carService.deleteId(id);
     }
 }

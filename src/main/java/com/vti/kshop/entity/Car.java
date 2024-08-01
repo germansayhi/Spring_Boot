@@ -33,6 +33,6 @@ public class Car {
     @Column(name = "car_maker", nullable = false, length = 50)
     private String carMaker;
 
-    @OneToMany(mappedBy = "car")
+    @OneToMany(mappedBy = "car", cascade =  CascadeType.ALL)
     private List<Accessory> accessories;
 }
