@@ -7,6 +7,7 @@ import com.vti.springframework.form.PostFilterForm;
 import com.vti.springframework.form.PostUpdateForm;
 import com.vti.springframework.service.PostService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
