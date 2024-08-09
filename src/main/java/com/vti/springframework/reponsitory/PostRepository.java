@@ -31,6 +31,9 @@ public interface PostRepository extends JpaRepository<Post, Long>, JpaSpecificat
     // VD: xóa post theo title
     void deleteByTitle(String title);
 
+    // Kiem tra title co ton tai khong
+    Boolean existsByTitle(String title);
+
     // 2. @Query annotation
 
     // VD: Cập nhật title cho post
@@ -46,4 +49,5 @@ public interface PostRepository extends JpaRepository<Post, Long>, JpaSpecificat
 //    @Query(value = "UPDATE Post SET title = :title WHERE id = :id", nativeQuery = true)
     // @Modifying
 //    void updateTitle(@Param("id") Long id,@Param("title") String title);
+
 }
