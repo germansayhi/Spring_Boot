@@ -11,6 +11,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,8 @@ import java.util.List;
 @AllArgsConstructor
 public class PostController {
     private PostService postService;
+
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/api/v1/posts")
     public PostDto create(@RequestBody @Valid PostCreateForm form) {
         return postService.create(form);
@@ -65,11 +68,13 @@ public class PostController {
         postService.updateTilte(id, title);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("api/v1/posts/{id}")
     public void deleteById(@PathVariable("id") @PostIdExists Long id) {
         postService.deleteId(id);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping(value = "/api/v1/posts/delete", params = "title")
     public void deleteByTitle(@RequestParam ("title") @PostTitleExists String title){
         postService.deleteByTitle(title);

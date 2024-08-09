@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +29,7 @@ public class CommentController {
         return commentService.findAll(form, pageable);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/api/v1/posts/{postId}/comments")
     public CommentDto create(
             @PathVariable("postId") @PostIdExists Long postId,
@@ -46,6 +48,7 @@ public class CommentController {
         return commentService.update(id, form);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("api/v1/comments/{id}")
     public void deleteById(@PathVariable("id") @CommentIdExists Long id) {
         commentService.deleteById(id);
